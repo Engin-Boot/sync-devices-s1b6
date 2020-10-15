@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="include\Publisher.h" />
+    <ClInclude Include="include\pubsub_opts.h" />
+    <ClInclude Include="include\Subscriber.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Publisher.cpp" />
+    <ClCompile Include="Subscriber.cpp" />
+    <ClCompile Include="Client2main.cpp" />
+  </ItemGroup>
+</Project>
