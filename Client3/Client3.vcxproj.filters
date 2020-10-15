@@ -2,9 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Client3main.cpp" />
-    <ClCompile Include="..\Client1\opts.cpp" />
-    <ClCompile Include="..\Client1\Publisher.cpp" />
-    <ClCompile Include="..\Client1\Subscriber.cpp" />
+    <ClCompile Include="Subscriber.cpp" />
+    <ClCompile Include="Publisher.cpp" />
+    <ClCompile Include="opts.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Publisher.h" />

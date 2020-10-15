@@ -81,10 +81,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\C++Projects\Bootcamp\SyncDevices\Client2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\BootcampStuff\SyncDevices\Client2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>D:\C++Projects\Bootcamp\SyncDevices\Client2\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\BootcampStuff\SyncDevices\Client2\lib%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>paho-mqtt3a.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -108,14 +108,18 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\BootcampStuff\SyncDevices\Client2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\BootcampStuff\SyncDevices\Client2\lib%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>paho-mqtt3a.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Client2main.cpp" />
+    <ClCompile Include="opts.cpp" />
     <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="Subscriber.cpp" />
   </ItemGroup>

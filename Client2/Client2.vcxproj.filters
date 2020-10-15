@@ -9,5 +9,6 @@
     <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="Subscriber.cpp" />
     <ClCompile Include="Client2main.cpp" />
+    <ClCompile Include="opts.cpp" />
   </ItemGroup>
 </Project>
