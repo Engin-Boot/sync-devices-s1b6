@@ -1,10 +1,9 @@
 
-#pragma once
-#include "MQTTAsync.h"
-#include "MQTTClientPersistence.h"
-#include "pubsub_opts.h"
-#include "Publisher.h"
-#include "Subscriber.h"
+#include "include/MQTTAsync.h"
+#include "include/MQTTClientPersistence.h"
+#include "include/pubsub_opts.h"
+#include "include/Publisher.h"
+#include "include/Subscriber.h"
 #include <stdio.h>
 #include <signal.h>
 #include <string.h>

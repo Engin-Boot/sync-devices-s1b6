@@ -1,3 +1,12 @@
-﻿  Client1main.cpp
-  Client1.vcxproj -> D:\C++Projects\Bootcamp\SyncDevices\x64\Debug\Client1.exe
-  Client1.vcxproj -> D:\C++Projects\Bootcamp\SyncDevices\x64\Debug\Client1.pdb (Partial PDB)
+﻿  CT.cpp
+c:\users\320090604\onedrive - philips\desktop\git 2\syncdevices\client1\ct.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Subscriber.cpp
+  Publisher.cpp
+  Generating Code...
+Subscriber.obj : error LNK2005: "struct MQTTAsync_responseOptions pub_opts" (?pub_opts@@3UMQTTAsync_responseOptions@@A) already defined in Publisher.obj
+Subscriber.obj : error LNK2005: "void * pub_client" (?pub_client@@3PEAXEA) already defined in Publisher.obj
+Subscriber.obj : error LNK2005: "struct pubsub_opts opts" (?opts@@3Upubsub_opts@@A) already defined in Publisher.obj
+CT.obj : error LNK2005: "struct MQTTAsync_responseOptions pub_opts" (?pub_opts@@3UMQTTAsync_responseOptions@@A) already defined in Publisher.obj
+CT.obj : error LNK2005: "void * pub_client" (?pub_client@@3PEAXEA) already defined in Publisher.obj
+CT.obj : error LNK2005: "struct pubsub_opts opts" (?opts@@3Upubsub_opts@@A) already defined in Publisher.obj
+C:\Users\320090604\OneDrive - Philips\Desktop\GIT 2\SyncDevices\x64\Debug\Client1.exe : fatal error LNK1169: one or more multiply defined symbols found

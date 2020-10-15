@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="opts.cpp" />
     <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="Subscriber.cpp" />
-    <ClCompile Include="Client1main.cpp" />
+    <ClCompile Include="CT.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\pubsub_opts.h" />
     <ClInclude Include="include\Publisher.h" />
     <ClInclude Include="include\Subscriber.h" />
+    <ClInclude Include="CT.h" />
+    <ClInclude Include="pubsub_opts.h" />
   </ItemGroup>
 </Project>

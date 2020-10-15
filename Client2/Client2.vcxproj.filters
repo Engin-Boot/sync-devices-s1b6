@@ -2,13 +2,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="include\Publisher.h" />
-    <ClInclude Include="include\pubsub_opts.h" />
     <ClInclude Include="include\Subscriber.h" />
+    <ClInclude Include="PET-CTdata.h" />
+    <ClInclude Include="pubsub_opts.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="Subscriber.cpp" />
-    <ClCompile Include="Client2main.cpp" />
-    <ClCompile Include="opts.cpp" />
+    <ClCompile Include="PET-CTdata.cpp" />
   </ItemGroup>
 </Project>

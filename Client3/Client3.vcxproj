@@ -74,6 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\320090604\OneDrive - Philips\Desktop\GIT 2\SyncDevices\Client3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -81,7 +82,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\BootcampStuff\SyncDevices\Client3\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\320090604\OneDrive - Philips\Desktop\GIT 2\SyncDevices\Client3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\BootcampStuff\SyncDevices\Client3\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -118,15 +119,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Client3main.cpp" />
-    <ClCompile Include="opts.cpp" />
+    <ClCompile Include="MRI.cpp" />
     <ClCompile Include="Publisher.cpp" />
     <ClCompile Include="Subscriber.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Publisher.h" />
-    <ClInclude Include="include\pubsub_opts.h" />
     <ClInclude Include="include\Subscriber.h" />
+    <ClInclude Include="MRI.h" />
+    <ClInclude Include="pubsub_opts.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

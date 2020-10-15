@@ -14,7 +14,7 @@
 *    Ian Craggs - initial contribution
 *******************************************************************************/
 
-#include "pubsub_opts.h"
+#include "include/pubsub_opts.h"
 
 #include <string.h>
 #include <stdlib.h>
