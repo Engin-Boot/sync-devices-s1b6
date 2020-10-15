@@ -1,6 +1,12 @@
-name: Build and Run
+name: CT
 
-on: [push, pull_request]
+on:
+  push:
+    paths-ignore:
+    - '**.md'
+  pull_request:
+    paths-ignore:
+    - '**.md'
 
 jobs:
   build:
@@ -9,28 +15,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      
     - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.1
+      uses: microsoft/setup-msbuild@v1.0.2 
       with:
-        vs-version: '[16.7,16.8)'
-      
-    - uses: nuget/setup-nuget@v1
-      with:
-        nuget-api-key: ${{ secrets.NuGetAPIKey }}
-        nuget-version: '5.x'
-    - run: nuget restore SyncDevices.sln
-
-    - name: MSBuild
-      run: msbuild SyncDevices.sln /p:OutDir="build_output"
+          vs-version: 15.0
     
-    - name: Add paho.mqtt.c client library
-      run: git clone https://github.com/eclipse/paho.mqtt.python.git
-           cd paho.mqtt.c
-           maje -j
-           sudo make install
+    - name: CT build
+      run: msbuild D:\a\sync-devices-s1b6\sync-devices-s1b6\Client1\Client1.vcxproj /p:configuration=debug /p:platform=x64
     
-    - name: Install Mosquitto
-      run : git clone https://github.com/eclipse/mosquitto
-    
-      
-   
+    - name: CT run
+      run: |
+        .\Client1\x64\Debug\Client1.exe sub
+      timeout-minutes:  3
