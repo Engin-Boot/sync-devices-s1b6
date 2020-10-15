@@ -20,6 +20,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2 
       with:
           vs-version: 15.0
+          operator-sdk-version: v0.8.1
     
     - name: CT build
       run: msbuild D:\a\sync-devices-s1b6\sync-devices-s1b6\Client1\Client1.vcxproj /p:configuration=debug /p:platform=x64
