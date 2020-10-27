@@ -24,7 +24,7 @@ jobs:
       run: g++ Mqtt_C_Client\*.cpp -I include -L lib -l paho-mqtt3c -o Client
    
     - name: Run Python Test Application
-      run : cd Test && python Test\inventoryAppTest.py
+      run : cd Test && python inventoryAppTest.py
 
     - name: build ClientTestApplication
       run: g++ Test\*.cpp  --coverage -o ClientTest
