@@ -1,6 +1,0 @@
-﻿  Subscriber.cpp
-  Publisher.cpp
-  MRI.cpp
-c:\users\320090604\onedrive - philips\desktop\git 2\syncdevices\client3\mri.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Generating Code...
-LINK : fatal error LNK1104: cannot open file 'paho-mqtt3a.lib'
