@@ -20,11 +20,14 @@ jobs:
 
     - uses: actions/checkout@v2
 
-    - name: build Client 
-      run: g++ Mqtt_C_Client\*.cpp -I include -L lib -l paho-mqtt3c -o Client
-   
+    - name: Install paho-mqtt for python
+      run : pip install paho-mqtt
+
     - name: Run Python Test Application
       run : cd Test && python inventoryAppTest.py
+
+    - name: build Client 
+      run: g++ Mqtt_C_Client\*.cpp -I include -L lib -l paho-mqtt3c -o Client
 
     - name: build ClientTestApplication
       run: g++ Test\*.cpp  --coverage -o ClientTest
