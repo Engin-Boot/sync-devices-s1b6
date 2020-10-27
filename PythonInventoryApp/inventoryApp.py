@@ -2,10 +2,7 @@ import paho.mqtt.client as mqtt
 import time
 
 import Sendmail
-import commons
-import InventoryDbConnection as inventory
-
-
+import InventoryDbConnection as dbConnection
 
 
 clientName = "PythonCT-InventoryApp"
@@ -18,43 +15,58 @@ discCode = 1
 
 #--------------------------------------------------------------------------------------------------
 
-def updateConsumableCount(consumables):
-	global dbConnection
+def updateConsumableCount(consumables, conn):
+	#global dbConnection
 	for item in consumables:
-		if((int(item[1])) <= inventoryWarningThreshold):
-			sendAlert("WARNING!! \n"+item[0]+" STOCK LOW")
+		if(int(item[1]) == 0):
+			sendAlert("WARNING!! \n"+item[0]+"STOCK EMPTY")
 			return False
-		else:
-			equipName = item[0]
-			equipCount = int(item[1]) - 1
-			cmd = "UPDATE inventory SET equipmentCount="+str(equipCount)+" WHERE equipmentName='"+item[0]+"'"
-			inventory.dbConnection.execute(cmd)
-			inventory.dbConnection.commit()
+		elif((int(item[1])) <= inventoryWarningThreshold):
+			sendAlert("WARNING!! \n"+item[0]+" STOCK LOW")
+			
+		equipName = item[0]
+		equipCount = int(item[1]) - 1
+		cmd = "UPDATE inventory SET equipmentCount="+str(equipCount)+" WHERE equipmentName='"+item[0]+"'"
+		try:
+			conn.execute(cmd)
+			conn.commit()
+		except:
+			print("In updateConsumableCont : Database Connection Error")
+			return False
+			
 	return True
 
-def numberOfRows(procedure):
-	global dbConnection
-	cmd = commons.countRows + " WHERE procedure='" + procedure+"'"
-	cursor = inventory.dbConnection.execute(cmd)
+def numberOfRows(procedure, conn):
+	#global dbConnection
+	cmd = "SELECT COUNT(*) FROM inventory WHERE procedure='" + procedure+"'"
+	try:
+		cursor = conn.execute(cmd)
+	except:
+		print("In numberOfRows : Database Connection Error")
+		return -1
 	for rows in cursor:
 		numRows = rows[0]
 	return numRows
 
-def consumableCount(procedure):
-	global dbConnection
+def consumableCount(procedure, conn):
+	#global dbConnection
 	consumablesUsed = []
-	if ( numberOfRows(procedure) > 0):
+	if ( numberOfRows(procedure, conn) > 0):
 		cmd = "SELECT equipmentName, equipmentCount FROM inventory WHERE procedure='"+procedure+"'"
-		cursor = inventory.dbConnection.execute(cmd)
+		try:
+			cursor = conn.execute(cmd)
+		except:
+			print("In consumableCount : Database Connection Error")
+			return False
+		
 		consumablesUsed = [ row for row in cursor ]
-		updateConsumableCount(consumablesUsed)
-		#print(consumablesUsed)
+		updateConsumableCount(consumablesUsed, conn)
 		return True
 	else:
 		return False
 
 #--------------------------------------------------------------------------------------------------
-                                                                                                   
+
 def brokerAcknowledgementReceived(client,userdata,flags,rc):  #to verify acknowledgement
     if rc == 0:
         print("Acknowledgement receieved from Broker\n")
@@ -69,8 +81,8 @@ def messageFromPublisher(client,userdata,message):
 	print("Topic : ",message.topic)
 	print()
 
-	inventory.openConnection()
-	splitPublishedResult(str(message.payload.decode("utf-8")))
+	conn = dbConnection.openConnection('test_inventory_database.db')
+	splitPublishedResult(str(message.payload.decode("utf-8")), conn)
 	
 
 def disConnectCalled(client,userdata,rc):
@@ -79,16 +91,13 @@ def disConnectCalled(client,userdata,rc):
 	discCode = rc
 
     
-def splitPublishedResult(msg):
-	global discCode
+def splitPublishedResult(msg, conn):
 	res = msg.split('/')
-	#procedure.append(res[2])
-	consumableCount(res[2])
+	consumableCount(res[2], conn)
 	return res[2]
 
 
 def sendAlert(msg):
-	print("ALERT")
 	Sendmail.sendMail(msg)
 	return msg  
     
@@ -114,9 +123,6 @@ def runApp():
 	client.loop_stop()
 	time.sleep(1)
 	client.disconnect()
-
-	print(procedure)
-	print(checkForCardiac(procedure))
 
 
 #-----------------------------------------------------------------------------------------------------
