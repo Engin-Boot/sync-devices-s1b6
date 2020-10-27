@@ -1,27 +1,73 @@
-STEPS TO BUILD:
-  REQUIREMENTS:
-  1. Mosquitto x64 needs to be installed.
-  2. Open-SSL win64 needs to be installed.
-  3. C-Make x64 needs to be installed.
-  4. Git-Clone Paho-Mqqt Client Library (Link in problem statement).
-  
-  STEPS (PAHO-MQTT CLIENT LIBRARY):
-  1.  Run cbuild.bat from Cloned PahoMqqt folder. (minimal changes required for different VS version other than 2019).
-  2.  Tests cases of cbuild.bat may fail, not asn issue; may continue closing prompt.
-  3.  Check paho.mqtt.c\build.paho if dlls,exes and lib are generated. 
-  
-  STEPS (CHECK PAHO-MQTT LIBRARY)
-  1.  Run Mosquitto.
-  2.  Run subscriber.exe with topic subscribed.
-  3.  Run publisher.exe with topic and message.
-  4.  Check if message is correctly recieved at subscriber.
- 
-STRUCTURE OF CODE:
+# <center> Sync-Devices
 
-  1.  There are three clients (CT,MRI,PET-CT) with their Publisher, Subscriber and main.
-  2.  The main handles publishing and subscription of the patient data, procedures and other details.
-  .
-Referral Link:
+## <center> MQTT C-Client
 
-  1.https://www.eclipse.org/paho/files/mqttdoc/MQTTClient/html/wildcard.html
- 
+- INITIAL REQUIREMENTS :
+  
+  - __*Mosquitto x64*__ needs to be installed for Broker to be running.
+  [Mosquitto Download](https://mosquitto.org/download/)
+  
+- BUILD SRC FILES
+  - `g++ Mqtt_C_Client\*.cpp -I include -L lib -l paho-mqtt3c -o Client` on executing this command a client application will be generated (Be in Root folder before executing this command).
+  - Or run Build batch file `Build.bat` in root folder which opens 3 instances of clients.
+
+- STEPS TO RUN APPLICATION
+
+  - To Run several instances of Client call it with different client ID's in different terminals.
+
+    Example : `Client.exe Client-1`
+
+  - Press __p__ to Publish & __q__ to quit.
+
+- STRUCTURE OF CODE:
+
+  - There is one client application which can be allocated with different client-ID by specifying it as a command line argument.
+
+  - The Client app handles the subscription and publishing of messages with other clients.
+
+---
+
+## <center> Python Client
+
+- INITIAL REQUIREMENTS :
+
+  - install paho.mqtt.client package `pip install paho-mqtt`
+  
+  - __*Mosquitto x64*__ needs to be installed for Broker to be running.
+  [Mosquitto Download](https://mosquitto.org/download/)
+
+ - STEPS TO RUN PYTHON CLIENT
+
+    - Execute the python script being in the root folder.
+
+      Command : `python PythonClient\pythonClient.py`
+
+    - Press __p__ to Publish & __q__ to quit.
+
+---
+
+## <center> Python Inventory Application
+
+- INITIAL REQUIREMENTS :
+
+  - install paho.mqtt.client package `pip install paho-mqtt`
+  
+  - __*Mosquitto x64*__ needs to be installed for Broker to be running.
+  [Mosquitto Download](https://mosquitto.org/download/)
+
+ - STEPS TO RUN PYTHON INVENTORY CLIENT
+
+    - Execute the python script being in the root folder.
+
+    - Command :
+
+      `python PythonInventoryApp\inventoryApp.py`
+
+    - Provide the user credentials to send an email alert.
+
+---
+
+USEFUL LINKS:
+
+- __*[MQTT Client library for C](https://www.eclipse.org/paho/files/mqttdoc/MQTTClient/html/index.html)*__
+- __*[Python MQTT Client](http://www.steves-internet-guide.com/into-mqtt-python-client/)*__

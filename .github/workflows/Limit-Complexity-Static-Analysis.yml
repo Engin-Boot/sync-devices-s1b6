@@ -23,4 +23,4 @@ jobs:
       run: pip install lizard
 
     - name: Limit complexity
-      run: $HOME/.local/bin/lizard --CCN 3 -x"./Test/*" -x"./include/*"
+      run: $HOME/.local/bin/lizard --CCN 3 -x"./Test/*" -x"./include/*" -x"./PythonInventoryApp/*"
