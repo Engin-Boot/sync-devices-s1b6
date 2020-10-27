@@ -1,47 +1,39 @@
-name: CT
+name: Build and Run
 
 on:
+
   push:
-    paths-ignore:
-    - '**.md'
+
+    branches: [ master ]
+
   pull_request:
-    paths-ignore:
-    - '**.md'
+
+    branches: [ master ]
 
 jobs:
+
   build:
 
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     steps:
+
     - uses: actions/checkout@v2
+
+    - name: build Client 
+      run: g++ Mqtt_C_Client\*.cpp -I include -L lib -l paho-mqtt3c -o Client
       
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.2 
-      with:
-          vs-version: 15.0
-          operator-sdk-version: v0.8.1
-    
-    - name: CT build
-      run: msbuild D:\a\sync-devices-s1b6\sync-devices-s1b6\Client1\Client1.vcxproj /p:configuration=debug /p:platform=x64
-    
-    - name: CT run
-      run: |
-        .\Client1\x64\Debug\Client1.exe
-      timeout-minutes:  3
+    - name: build ClientTestApplication
+      run: g++ Test\*.cpp  --coverage -o ClientTest
+   
+    - name: move gcno to Test directory
+      run: move *.gcno Test 
       
-    - name: PET-CT build
-      run: msbuild D:\a\sync-devices-s1b6\sync-devices-s1b6\Client2\Client2.vcxproj /p:configuration=debug /p:platform=x64
-    
-    - name: PET-CT run
-      run: |
-        .\Client2\x64\Debug\Client2.exe
-      timeout-minutes:  3
-      
-    - name: MRI build
-      run: msbuild D:\a\sync-devices-s1b6\sync-devices-s1b6\Client3\Client3.vcxproj /p:configuration=debug /p:platform=x64
-    
-    - name: MRI run
-      run: |
-        .\Client3\x64\Debug\Client3.exe
-      timeout-minutes:  3
+    - name: Run ClientTest App
+      run: ./ClientTest.exe 
+
+    - name: move .gcda files to Test directory
+      run:  move *.gcda Test
+
+    - name: ClientTest coverage report
+      run:  gcov -r Test\*.cpp
