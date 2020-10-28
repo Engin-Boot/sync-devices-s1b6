@@ -1,7 +1,4 @@
 import sqlite3
-import _thread as thread
-
-
 
 def openConnection(dbName):
     dbConnection = sqlite3.connect(dbName)

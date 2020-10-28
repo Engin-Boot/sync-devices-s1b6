@@ -1,12 +1,13 @@
-import paho.mqtt.client as mqtt
 import time
+
+import paho.mqtt.client as mqtt
 
 clientName = "PythonCT"
 brokerIP = "localhost"
 topic = "Patient/Details"
 
 #--------------------------------------------------------------------------------------------------
-                                                                                                   
+  
 def brokerAcknowledgementReceived(client,userdata,flags,rc):  #to verify acknowledgement
     if rc == 0:
         print("Acknowledgement receieved from Broker\n")
